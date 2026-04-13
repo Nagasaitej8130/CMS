@@ -18,12 +18,12 @@ export default async function Home() {
       <div className="px-6 relative">
         <div className="absolute -top-16 left-6">
           <div className="w-32 h-32 bg-white rounded-full border-4 border-white shadow-lg flex items-center justify-center text-xl font-bold">
-            N
+            NS
           </div>
         </div>
 
         <div className="pt-20">
-          <h1 className="text-3xl font-bold">Your Name</h1>
+          <h1 className="text-3xl font-bold">Naga Sai Teja Bollimuntha</h1>
           <p className="text-gray-600">
             Building things, learning daily, chasing growth 🚀
           </p>
