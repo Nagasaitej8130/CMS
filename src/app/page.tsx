@@ -1,12 +1,17 @@
-import { connectDB } from "@/lib/db";
-import Blog from "@/models/Blog";
 import Link from "next/link";
 import SubscribeForm from "@/components/SubscribeForm";
 
-export default async function Home() {
-  await connectDB();
+async function getBlogs() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog`, {
+    cache: "no-store",
+  });
 
-  const blogs = await Blog.find().sort({ createdAt: -1 }).limit(3);
+  const data = await res.json();
+  return data.data.slice(0, 3);
+}
+
+export default async function Home() {
+  const blogs = await getBlogs();
 
   return (
     <main className="max-w-4xl mx-auto p-4">
@@ -39,50 +44,51 @@ export default async function Home() {
 
         {/* 📰 BLOGS */}
         <div className="mt-10">
-  <h2 className="text-xl font-semibold mb-4">Latest Blogs</h2>
+          <h2 className="text-xl font-semibold mb-4">Latest Blogs</h2>
 
-  <div className="space-y-4">
-    {blogs.map((blog: any) => (
-      <div
-        key={blog._id}
-        className="border p-4 rounded-lg shadow-sm"
-        style={{ backgroundColor: "var(--card)" }}
-      >
-        <Link href={`/blog/${blog.slug}`}>
-          <h3 className="text-lg font-semibold text-blue-600 hover:underline">
-            {blog.title}
-          </h3>
-        </Link>
+          <div className="space-y-4">
+            {blogs.map((blog: any) => (
+              <div
+                key={blog._id}
+                className="border p-4 rounded-lg shadow-sm"
+                style={{ backgroundColor: "var(--card)" }}
+              >
+                <Link href={`/blog/${blog.slug}`}>
+                  <h3 className="text-lg font-semibold text-blue-600 hover:underline">
+                    {blog.title}
+                  </h3>
+                </Link>
 
-        <p className="text-sm text-gray-500">
-          {new Date(blog.createdAt).toLocaleDateString()}
-        </p>
+                <p className="text-sm text-gray-500">
+                  {new Date(blog.createdAt).toLocaleDateString()}
+                </p>
 
-        <p className="mt-2 text-gray-200">
-          {blog.content.slice(0, 100)}...
-        </p>
-      </div>
-    ))}
-  </div>
+                <p className="mt-2 text-gray-200">
+                  {blog.content.slice(0, 100)}...
+                </p>
+              </div>
+            ))}
+          </div>
 
-  <div className="mt-4">
-    <Link href="/blogs" className="text-blue-600 hover:underline">
-      View All Blogs →
-    </Link>
-  </div>
-</div>
+          <div className="mt-4">
+            <Link href="/blogs" className="text-blue-600 hover:underline">
+              View All Blogs →
+            </Link>
+          </div>
+        </div>
 
-<div className="mt-12 border p-6 rounded-lg text-center">
-  <h2 className="text-xl font-semibold mb-2">
-    Subscribe to my blog
-  </h2>
+        {/* 📩 SUBSCRIBE */}
+        <div className="mt-12 border p-6 rounded-lg text-center">
+          <h2 className="text-xl font-semibold mb-2">
+            Subscribe to my blog
+          </h2>
 
-  <p className="text-sm text-gray-500 mb-4">
-    Get notified when I publish new content 🚀
-  </p>
+          <p className="text-sm text-gray-500 mb-4">
+            Get notified when I publish new content 🚀
+          </p>
 
-  <SubscribeForm />
-</div>
+          <SubscribeForm />
+        </div>
 
       </div>
     </main>
