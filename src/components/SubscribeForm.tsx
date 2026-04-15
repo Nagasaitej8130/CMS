@@ -7,6 +7,8 @@ export default function SubscribeForm() {
   const [loading, setLoading] = useState(false);
 
   const handleSubscribe = async () => {
+    if (!email) return;
+
     setLoading(true);
 
     const res = await fetch("/api/subscribe", {
@@ -27,18 +29,18 @@ export default function SubscribeForm() {
   };
 
   return (
-    <div className="flex gap-2 justify-center">
+    <div className="flex flex-col md:flex-row gap-3 justify-center w-full">
       <input
         type="email"
         placeholder="Enter your email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="border p-2 rounded w-64"
+        className="border p-2 rounded w-full md:w-80 bg-transparent"
       />
 
       <button
         onClick={handleSubscribe}
-        className="bg-black text-white px-4 py-2 rounded"
+        className="bg-black text-white px-4 py-2 rounded w-full md:w-auto"
         disabled={loading}
       >
         {loading ? "..." : "Subscribe"}

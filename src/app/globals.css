@@ -1,21 +1,65 @@
+/* Tailwind */
 @import "tailwindcss";
 
-/* Light */
+/* =========================
+   🎨 COLOR SYSTEM
+========================= */
+
+/* Light Mode */
 :root {
-  --bg: #ffffff;
-  --text: #000000;
-  --card: #ffffff;
+  --bg: #f8fafc;        /* soft gray background */
+  --text: #0f172a;      /* slate-900 */
+  --card: #ffffff;      /* white cards */
+  --muted: #64748b;     /* gray text */
+  --border: #e2e8f0;    /* light border */
+  --accent: #2563eb;    /* blue-600 */
 }
 
-/* Dark */
+/* Dark Mode */
 .dark {
-  --bg: #0f172a;
-  --text: #ffffff;
-  --card: #1f2937;
+  --bg: #0b1120;        /* deep dark */
+  --text: #e2e8f0;      /* light text */
+  --card: #111827;      /* dark card */
+  --muted: #94a3b8;     /* muted text */
+  --border: #1f2937;    /* border */
+  --accent: #3b82f6;    /* blue-500 */
 }
 
-/* Apply globally */
+/* =========================
+   🌍 GLOBAL STYLES
+========================= */
+
+html, body {
+  overflow-x: hidden; /* 🚫 prevent mobile scroll */
+}
+
 body {
   background-color: var(--bg);
   color: var(--text);
+  font-family: system-ui, sans-serif;
+}
+
+/* =========================
+   🧱 REUSABLE UTILITIES
+========================= */
+
+/* Card */
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+/* Muted text */
+.text-muted {
+  color: var(--muted);
+}
+
+/* Accent */
+.text-accent {
+  color: var(--accent);
+}
+
+.bg-accent {
+  background-color: var(--accent);
 }

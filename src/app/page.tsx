@@ -2,7 +2,12 @@ import Link from "next/link";
 import SubscribeForm from "@/components/SubscribeForm";
 
 async function getBlogs() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog`, {
+  const baseUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "";
+
+  const res = await fetch(`${baseUrl}/api/blog`, {
     cache: "no-store",
   });
 
@@ -30,7 +35,7 @@ export default async function Home() {
         <div className="pt-20">
           <h1 className="text-3xl font-bold">Naga Sai Teja Bollimuntha</h1>
           <p className="text-gray-600">
-            Building things, learning daily, chasing growth 🚀
+            Building things, learning daily, chasing growth 
           </p>
         </div>
 
@@ -84,7 +89,7 @@ export default async function Home() {
           </h2>
 
           <p className="text-sm text-gray-500 mb-4">
-            Get notified when I publish new content 🚀
+            Get notified when I publish new content 
           </p>
 
           <SubscribeForm />
