@@ -1,11 +1,16 @@
 import Link from "next/link";
 import SubscribeForm from "@/components/SubscribeForm";
-
 async function getBlogs() {
-  const baseUrl =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : process.env.NEXT_PUBLIC_BASE_URL;
+  let baseUrl = "";
+
+  if (process.env.NODE_ENV === "development") {
+    baseUrl = "http://localhost:3000";
+  } else if (process.env.NEXT_PUBLIC_BASE_URL) {
+    baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  } else {
+    // fallback safety (important)
+    baseUrl = "https://cms-drab-omega.vercel.app";
+  }
 
   const res = await fetch(`${baseUrl}/api/blog`, {
     cache: "no-store",
