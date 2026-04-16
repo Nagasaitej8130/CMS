@@ -33,12 +33,14 @@ export default function RootLayout({
   <body className={`${bodyFont.variable} ${headingFont.variable}`}>
   <Navbar />
 
-  <main className="flex-1 w-full">
+  <main className="flex-1 w-full pb-16">
     {children}
   </main>
 
   <Footer />
+  
 </body>
+
     </html>
   );
 }

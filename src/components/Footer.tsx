@@ -1,7 +1,10 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-theme mt-16">
-      <div className="max-w-4xl mx-auto px-4 py-6 text-center text-sm text-muted">
+    <footer
+      className="fixed bottom-0 left-0 w-full border-t border-theme z-100"
+      style={{ backgroundColor: "var(--card)" }}
+    >
+      <div className="max-w-8xl mx-auto px-6 py-2 text-center text-xs text-muted">
         © {new Date().getFullYear()} Naga Sai Teja Bollimuntha. All rights reserved.
       </div>
     </footer>
