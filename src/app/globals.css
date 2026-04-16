@@ -1,65 +1,159 @@
 /* Tailwind */
 @import "tailwindcss";
 
-/* =========================
-   🎨 COLOR SYSTEM
-========================= */
+/* Color pallette*/
 
-/* Light Mode */
+/* Light mode colors*/
+
 :root {
-  --bg: #f8fafc;        /* soft gray background */
-  --text: #0f172a;      /* slate-900 */
-  --card: #ffffff;      /* white cards */
-  --muted: #64748b;     /* gray text */
-  --border: #e2e8f0;    /* light border */
-  --accent: #2563eb;    /* blue-600 */
+  --bg: #fcde7b;
+  --text: #383c45;
+  --card: #fae0a0;
+  --muted: #000000;
+  --border: #ffa600;
+
+  --accent: #ffa200;
+  --accent-soft: #b8f2e6;
+  --highlight: #ff0000;
 }
 
-/* Dark Mode */
+/* Dark mode colors */
+
 .dark {
-  --bg: #0b1120;        /* deep dark */
-  --text: #e2e8f0;      /* light text */
-  --card: #111827;      /* dark card */
-  --muted: #94a3b8;     /* muted text */
-  --border: #1f2937;    /* border */
-  --accent: #3b82f6;    /* blue-500 */
+  --bg: #0b090a;        /* onyx */
+  --text: #fffef0;      /* white_smoke */
+  --card: #0a273c;      /* carbon_black */
+  --muted: #b1a7a6;     /* silver */
+  --border: #2a2a2a;    /* dust grey dark */
+
+  --accent: #e5383b;    /* strawberry red */
+  --accent-soft: #ba181b; /* mahogany red */
+  --highlight: #a4161a;   /* deep red */
 }
 
-/* =========================
-   🌍 GLOBAL STYLES
-========================= */
+/* Global Styles */
 
 html, body {
-  overflow-x: hidden; /* 🚫 prevent mobile scroll */
+  overflow-x: hidden;
 }
 
 body {
   background-color: var(--bg);
   color: var(--text);
   font-family: system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* =========================
-   🧱 REUSABLE UTILITIES
-========================= */
+/*Fixing: Separate gradients properly */
 
-/* Card */
+/* Light mode */
+:root body {
+  background: linear-gradient(
+    to bottom,
+    #fce390 0%,
+    #fce390 60%,
+    #fce390 100%
+  );
+}
+
+/* Dark mode */
+.dark body {
+  background: linear-gradient(
+    to bottom,
+    #0b090a 0%,
+    #161a1d 60%,
+    #0b090a 100%
+  );
+}
+
+/* Reusable Utilities */
+
 .card {
   background-color: var(--card);
   border: 1px solid var(--border);
   border-radius: 12px;
+  transition: all 0.2s ease;
 }
 
-/* Muted text */
+.card:hover {
+  transform: translateY(-2px);
+}
+
 .text-muted {
   color: var(--muted);
 }
 
-/* Accent */
 .text-accent {
   color: var(--accent);
 }
 
 .bg-accent {
   background-color: var(--accent);
+  color: #000;
+}
+
+.text-highlight {
+  color: var(--highlight);
+}
+
+
+
+/* Dropdown (Sort and Filter) colors*/
+
+select {
+  background-color: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+/* LIGHT MODE */
+:root option {
+  background-color: #fedd8b;  /* paper */
+  color: #383c45;             /* slate text */
+}
+
+/*  DARK MODE  */
+.dark option {
+  background-color: #161a1d;  /* carbon_black */
+  color: #f5f3f4;             /* white_smoke */
+}
+
+.dark select:focus {
+  border-color: var(--accent);
+}
+
+:root select:focus {
+  border-color: var(--accent);
+}
+/*
+    PRO INPUT STYLE (THEME AWARE)*/
+
+
+.input-pro {
+  border: 1px solid var(--accent);
+  background-color: transparent;
+  transition: all 0.25s ease;
+}
+
+/* subtle hover */
+.input-pro:hover {
+  border-color: var(--accent);
+}
+
+/* focus glow adapts to theme */
+.input-pro:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent),
+    0 0 12px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+/* placeholder tone */
+.input-pro::placeholder {
+  color: var(--muted);
+}
+
+.sidebar {
+  background-color: var(--card);
+  border-left: 1px solid var(--border);
 }

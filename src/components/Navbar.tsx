@@ -8,64 +8,108 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="border-b bg-white dark:bg-gray-900 sticky top-0 z-50">
+    <nav
+      className="sticky top-0 z-50 border-b"
+      style={{
+        backgroundColor: "var(--card)",
+        borderColor: "var(--border)",
+      }}
+    >
       <div className="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
-        <Link href="/" className="font-bold text-lg">
-          MyCMS
+        
+        {/* LOGO */}
+        <Link
+          href="/"
+          className="font-bold text-lg"
+          style={{ color: "var(--accent)" } }
+        >
+          Naga Sai Teja
         </Link>
 
-        {/* Desktop */}
-        <div className="hidden md:flex items-center gap-4 text-sm">
-          <Link href="/">Home</Link>
-          <Link href="/blogs">Blogs</Link>
-          <Link href="/admin">Admin</Link>
+        {/* DESKTOP NAV */}
+        <div className="hidden md:flex items-center gap-6 text-sm">
+          <Link href="/" style={{ color: "var(--text)" }}>
+            Home
+          </Link>
+          <Link href="/blogs" style={{ color: "var(--text)" }}>
+            Blogs
+          </Link>
+          <Link href="/admin" style={{ color: "var(--text)" }}>
+            Admin
+          </Link>
+
           <ThemeToggle />
         </div>
 
-        {/* Mobile Button */}
+        {/* MOBILE BUTTON */}
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden text-xl"
+          style={{ color: "var(--text)" }}
         >
           ☰
         </button>
       </div>
 
-      {/* Mobile Sidebar (Right Side ONLY on mobile) */}
+      {/* MOBILE SIDEBAR */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-900 shadow-lg transform transition-transform duration-300 z-50 md:hidden ${
+        className={`fixed top-0 right-0 h-full w-64 transform transition-transform duration-300 z-50 md:hidden ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{
+          backgroundColor: "var(--card)",
+          borderLeft: "1px solid var(--border)",
+        }}
       >
-        <div className="p-4 space-y-4">
+        <div className="p-4 space-y-6">
+          
+          {/* CLOSE BUTTON */}
           <button
             onClick={() => setOpen(false)}
-            className="text-xl self-end"
+            className="text-xl"
+            style={{ color: "var(--text)" }}
           >
             ✕
           </button>
 
-          <nav className="flex flex-col gap-4 text-lg">
-            <Link href="/" onClick={() => setOpen(false)}>
+          {/* NAV LINKS */}
+          <nav className="flex flex-col gap-5 text-lg">
+            <Link
+              href="/"
+              onClick={() => setOpen(false)}
+              style={{ color: "var(--text)" }}
+            >
               Home
             </Link>
-            <Link href="/blogs" onClick={() => setOpen(false)}>
+
+            <Link
+              href="/blogs"
+              onClick={() => setOpen(false)}
+              style={{ color: "var(--text)" }}
+            >
               Blogs
             </Link>
-            <Link href="/admin" onClick={() => setOpen(false)}>
+
+            <Link
+              href="/admin"
+              onClick={() => setOpen(false)}
+              style={{ color: "var(--text)" }}
+            >
               Admin
             </Link>
 
-            <ThemeToggle />
+            <div className="pt-4 border-t" style={{ borderColor: "var(--border)" }}>
+              <ThemeToggle />
+            </div>
           </nav>
         </div>
       </div>
 
-      {/* Backdrop */}
+      {/* BACKDROP */}
       {open && (
         <div
           onClick={() => setOpen(false)}
-          className="fixed inset-0 bg-black/30 z-40 md:hidden"
+          className="fixed inset-0 bg-black/40 z-40 md:hidden backdrop-blur-sm"
         />
       )}
     </nav>

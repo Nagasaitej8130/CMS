@@ -1,6 +1,7 @@
 import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
 import LikeButton from "@/components/LikeButton";
+import SubscribeForm from "@/components/SubscribeForm";
 
 export default async function BlogPage({ params }: any) {
   await connectDB();
@@ -30,7 +31,13 @@ export default async function BlogPage({ params }: any) {
       <div className="mt-8 text-sm text-blue-500">
         Category: {blog.category}
       </div>
+
       <LikeButton slug={slug} initialLikes={blog.likes} />
+
+      {/* 📩 SUBSCRIBE FORM (ADDED ONLY) */}
+      <div className="mt-12">
+        <SubscribeForm />
+      </div>
     </main>
   );
 }

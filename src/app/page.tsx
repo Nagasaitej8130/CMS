@@ -26,79 +26,96 @@ export default async function Home() {
   return (
     <main className="max-w-4xl mx-auto p-4">
 
-      {/* 🔵 BANNER */}
-      <div className="h-48 bg-gradient-to-r from-gray-400 to-gray-600 rounded-xl"></div>
+     {/* 🔵 BANNER */}
+<div className="h-42 w-full rounded-xl overflow-hidden relative">
+  <img
+    src="/banner.jpeg"
+    className="w-full h-full object-cover"
+  />
+  <div className="absolute inset-0 bg-black/20"></div>
+</div>
 
-      {/* 🟢 PROFILE */}
-      <div className="px-6 relative">
-        <div className="absolute -top-16 left-6">
-          <div className="w-32 h-32 bg-white rounded-full border-4 border-white shadow-lg flex items-center justify-center text-xl font-bold">
-            NS
-          </div>
-        </div>
-
-        <div className="pt-20">
+{/* 🟢 PROFILE */}
+<div className="px-6 relative">
+  <div className="absolute -top-16 left-6">
+    <div className="w-44 h-44 rounded-full border-4 shadow-lg overflow-hidden"
+      style={{
+        borderColor: "var(--bg)",
+      }}
+    >
+      <img
+        src="/profile.jpeg"
+        alt="Profile"
+        className="w-full h-full object-cover"
+      />
+    </div>
+  
+  
+  
+  
+  </div>
+       <div className="pt-32 md:pt-32">
           <h1 className="text-3xl font-bold">Naga Sai Teja Bollimuntha</h1>
-          <p className="text-gray-600">
-            Building things, learning daily, chasing growth 
+          <p className="text-gray-350">
+            Building things || learning daily || chasing growth 
           </p>
         </div>
 
-        {/* 🧾 ABOUT */}
+        {/* ABOUT */}
         <div className="mt-6">
           <h2 className="text-xl font-semibold">About</h2>
-          <p className="text-gray-700 mt-2">
+          <p className="text-gray-350 mt-2">
             I write about tech, fitness, and life. Sharing what I learn along the journey of becoming better every day.
           </p>
         </div>
 
-        {/* 📰 BLOGS */}
-        <div className="mt-10">
-          <h2 className="text-xl font-semibold mb-4">Latest Blogs</h2>
+        {/* recent blogs */}
+      
+<div className="mt-10">
+  <h2 className="text-xl font-semibold mb-4">Latest Blogs</h2>
 
-          <div className="space-y-4">
-            {blogs.map((blog: any) => (
-              <div
-                key={blog._id}
-                className="border p-4 rounded-lg shadow-sm"
-                style={{ backgroundColor: "var(--card)" }}
-              >
-                <Link href={`/blog/${blog.slug}`}>
-                  <h3 className="text-lg font-semibold text-blue-600 hover:underline">
-                    {blog.title}
-                  </h3>
-                </Link>
+  <div className="space-y-4">
+    {blogs.map((blog: any) => (
+      <div key={blog._id} className="card p-4 shadow-sm">
+        <Link href={`/blog/${blog.slug}`}>
+          <h3 className="text-lg font-semibold text-accent hover:underline">
+            {blog.title}
+          </h3>
+        </Link>
 
-                <p className="text-sm text-gray-500">
-                  {new Date(blog.createdAt).toLocaleDateString()}
-                </p>
+        <p className="text-sm text-muted">
+          {new Date(blog.createdAt).toLocaleDateString()}
+        </p>
 
-                <p className="mt-2 text-gray-200">
-                  {blog.content.slice(0, 100)}...
-                </p>
-              </div>
-            ))}
-          </div>
+        <p className="mt-2 text-muted">
+          {blog.content.slice(0, 100)}...
+        </p>
+      </div>
+    ))}
+  </div>
 
-          <div className="mt-4">
-            <Link href="/blogs" className="text-blue-600 hover:underline">
-              View All Blogs →
-            </Link>
-          </div>
-        </div>
+  <div className="mt-4">
+    <Link href="/blogs" className="text-accent hover:underline">
+      View All Blogs →
+    </Link>
+  </div>
+</div>
 
-        {/* 📩 SUBSCRIBE */}
-        <div className="mt-12 border p-6 rounded-lg text-center">
-          <h2 className="text-xl font-semibold mb-2">
-            Subscribe to my blog
-          </h2>
+{/* Subscribe form */}
+<div className="mt-12 card p-6 text-center">
+  <h2 className="text-xl font-semibold mb-2">
+    Subscribe to my blog
+  </h2>
 
-          <p className="text-sm text-gray-500 mb-4">
-            Get notified when I publish new content 
-          </p>
+  <p className="text-sm text-muted mb-4">
+    Get notified when I publish new content
+  </p>
 
-          <SubscribeForm />
-        </div>
+  <SubscribeForm />
+</div>
+
+       
+        
 
       </div>
     </main>
