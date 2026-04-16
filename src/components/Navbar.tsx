@@ -18,13 +18,9 @@ export default function Navbar() {
       <div className="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
         
         {/* LOGO */}
-        <Link
-          href="/"
-          className="font-bold text-lg"
-          style={{ color: "var(--accent)" } }
-        >
-          Naga Sai Teja
-        </Link>
+        <Link href="/" className="logo">
+  Naga Sai Teja
+</Link>
 
         {/* DESKTOP NAV */}
         <div className="hidden md:flex items-center gap-6 text-sm">

@@ -2,8 +2,32 @@
 @import "tailwindcss";
 
 
+/* =========================
+   ✨ LOGO ANIMATION
+========================= */
 
+.logo {
+  font-family: Underwood, serif;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text);
+}
 
+/* inline cursor */
+.logo::after {
+  content: "▋";
+  animation: blink 1s infinite;
+  color: var(--text); /* auto adapts to theme */
+}
+
+/* blinking */
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
 /*Font */
 
 @font-face {
