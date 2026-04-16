@@ -55,7 +55,7 @@ export default async function Home() {
   
   </div>
        <div className="pt-32 md:pt-32">
-          <h1 className="text-3xl font-bold">Naga Sai Teja Bollimuntha</h1>
+          <h1 className="text-3xl font-bold" style={{ fontFamily: "var(--font-display)" }} >Naga Sai Teja Bollimuntha</h1>
           <p className="text-gray-350">
             Building things || learning daily || chasing growth 
           </p>
@@ -63,7 +63,7 @@ export default async function Home() {
 
         {/* ABOUT */}
         <div className="mt-6">
-          <h2 className="text-xl font-semibold">About</h2>
+          <h2 className="text-xl font-semibold" style={{ fontFamily: "var(--font-heading)" }}>About</h2>
           <p className="text-gray-350 mt-2">
             I write about tech, fitness, and life. Sharing what I learn along the journey of becoming better every day.
           </p>

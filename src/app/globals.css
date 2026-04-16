@@ -1,10 +1,19 @@
 /* Tailwind */
 @import "tailwindcss";
 
+
+
+
+/*Font */
+
+@font-face {
+  font-family: "Underwood";
+  src: url("/fonts/underwood_champion-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 /* Color pallette*/
-
 /* Light mode colors*/
-
 :root {
   --bg: #fcde7b;
   --text: #383c45;
@@ -15,6 +24,9 @@
   --accent: #ffa200;
   --accent-soft: #b8f2e6;
   --highlight: #ff0000;
+  --font-display: "Underwood", serif;
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
 }
 
 /* Dark mode colors */
@@ -40,8 +52,11 @@ html, body {
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-body);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
 }
 
 /*Fixing: Separate gradients properly */
