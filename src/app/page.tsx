@@ -1,30 +1,21 @@
+import { connectDB } from "@/lib/db";
+import Blog from "@/models/Blog";
 import Link from "next/link";
 import SubscribeForm from "@/components/SubscribeForm";
 import ContactSection from "@/components/ContactSection";
 import { formatDateIST, stripHtml } from "@/utils/date";
 
-async function getBlogs() {
-  let baseUrl = "";
-
-  if (process.env.NODE_ENV === "development") {
-    baseUrl = "http://localhost:3000";
-  } else if (process.env.NEXT_PUBLIC_BASE_URL) {
-    baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  } else {
-    // fallback safety (important)
-    baseUrl = "https://cms-drab-omega.vercel.app";
-  }
-
-  const res = await fetch(`${baseUrl}/api/blog`, {
-    cache: "no-store",
-  });
-
-  const data = await res.json();
-  return data.data.slice(0, 3);
-}
-
 export default async function Home() {
-  const blogs = await getBlogs();
+  let blogs = [];
+  
+  try {
+    await connectDB();
+    // Get latest 3 blogs directly from DB
+    blogs = await Blog.find().sort({ createdAt: -1 }).limit(3).lean();
+  } catch (error) {
+    console.error("Home page DB error:", error);
+    // Keep blogs as empty array so page doesn't crash
+  }
 
   return (
     <>
