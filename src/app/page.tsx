@@ -6,7 +6,7 @@ import ContactSection from "@/components/ContactSection";
 import { formatDateIST, stripHtml } from "@/utils/date";
 
 export default async function Home() {
-  let blogs = [];
+  let blogs: any[] = [];
   
   try {
     await connectDB();
