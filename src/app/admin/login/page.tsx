@@ -6,9 +6,13 @@ import { useRouter } from "next/navigation";
 export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+
     try {
       setLoading(true);
 
@@ -25,11 +29,11 @@ export default function LoginPage() {
       if (data.success) {
         window.location.href = "/admin";
       } else {
-        alert("Wrong password");
+        setError("Incorrect password. Please try again.");
       }
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong");
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -37,7 +41,11 @@ export default function LoginPage() {
 
   return (
     <main className="h-screen flex items-center justify-center">
-      <div className="p-6 border rounded space-y-4">
+      <form
+        onSubmit={handleLogin}
+        className="p-6 border rounded space-y-4 w-full max-w-sm"
+        style={{ borderColor: "var(--border)", backgroundColor: "var(--card)" }}
+      >
         <h1 className="text-2xl font-bold">Admin Login</h1>
 
         <input
@@ -45,17 +53,23 @@ export default function LoginPage() {
           placeholder="Enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 w-full"
+          className="border p-2 w-full input-pro rounded"
+          autoComplete="current-password"
+          required
         />
 
+        {error && (
+          <p className="text-sm text-red-500">{error}</p>
+        )}
+
         <button
-          onClick={handleLogin}
-          className="bg-black text-white px-4 py-2 w-full"
+          type="submit"
+          className="bg-black text-white px-4 py-2 w-full rounded"
           disabled={loading}
         >
           {loading ? "Logging in..." : "Login"}
         </button>
-      </div>
+      </form>
     </main>
   );
-}
+}

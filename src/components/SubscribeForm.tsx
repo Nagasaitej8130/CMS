@@ -35,7 +35,7 @@ export default function SubscribeForm() {
         placeholder="Enter your email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="border p-2 rounded w-full md:w-80 bg-transparent"
+        className="border p-2 rounded w-full md:w-80 bg-transparent input-pro subscribe-input"
       />
 
       <button

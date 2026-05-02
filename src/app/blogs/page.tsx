@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import ContactSection from "@/components/ContactSection";
 
 export default function BlogsPage() {
   const [blogs, setBlogs] = useState<any[]>([]);
@@ -39,6 +40,7 @@ export default function BlogsPage() {
     );
 
   return (
+   <>
    <main className="max-w-4xl mx-auto p-6 space-y-6">
   <h1 className="text-3xl font-bold">All Blogs</h1>
 
@@ -73,24 +75,54 @@ export default function BlogsPage() {
   </div>
 
   <div className="space-y-4">
-    {filteredBlogs.map((blog) => (
-      <div key={blog._id} className="card p-4 shadow-sm">
-        <Link href={`/blog/${blog.slug}`}>
-          <h2 className="text-xl font-semibold text-accent hover:underline">
-            {blog.title}
-          </h2>
-        </Link>
-
-        <p className="text-sm text-muted">
-          {new Date(blog.createdAt).toLocaleString()}
-        </p>
-
-        <p className="mt-2 text-muted">
-          {blog.content.slice(0, 120)}...
-        </p>
+    {filteredBlogs.length === 0 ? (
+      <div className="text-center py-16" style={{ color: "var(--muted)" }}>
+        {/* Outlined empty-inbox illustration */}
+        <svg
+          viewBox="0 0 64 64"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="mx-auto mb-5"
+          style={{ width: 56, height: 56, opacity: 0.55 }}
+          aria-hidden="true"
+        >
+          {/* Box base */}
+          <path d="M8 36h48l-6 16H14L8 36Z" />
+          {/* Box top open */}
+          <path d="M8 36l8-20h32l8 20" />
+          {/* Divider */}
+          <path d="M8 36h48" />
+          {/* Empty slot lines inside box */}
+          <path d="M24 44h16" />
+        </svg>
+        <p className="text-base font-semibold">No posts yet</p>
+        <p className="text-sm mt-1">Check back soon — content is coming!</p>
       </div>
-    ))}
+    ) : (
+      filteredBlogs.map((blog) => (
+        <div key={blog._id} className="card p-4 shadow-sm">
+          <Link href={`/blog/${blog.slug}`}>
+            <h2 className="text-xl font-semibold text-accent hover:underline">
+              {blog.title}
+            </h2>
+          </Link>
+
+          <p className="text-sm text-muted">
+            {new Date(blog.createdAt).toLocaleString()}
+          </p>
+
+          <p className="mt-2 text-muted">
+            {blog.content.slice(0, 120)}...
+          </p>
+        </div>
+      ))
+    )}
   </div>
 </main>
+<ContactSection />
+</>
   );
 }

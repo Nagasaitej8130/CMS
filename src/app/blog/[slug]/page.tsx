@@ -2,6 +2,7 @@ import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
 import LikeButton from "@/components/LikeButton";
 import SubscribeForm from "@/components/SubscribeForm";
+import ContactSection from "@/components/ContactSection";
 
 export default async function BlogPage({ params }: any) {
   await connectDB();
@@ -15,6 +16,7 @@ export default async function BlogPage({ params }: any) {
   }
 
   return (
+    <>
     <main className="max-w-3xl mx-auto p-10">
       <h1 className="text-4xl font-bold mb-2">
         {blog.title}
@@ -39,5 +41,7 @@ export default async function BlogPage({ params }: any) {
         <SubscribeForm />
       </div>
     </main>
+    <ContactSection />
+    </>
   );
 }

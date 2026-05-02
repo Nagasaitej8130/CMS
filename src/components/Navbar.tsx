@@ -30,6 +30,9 @@ export default function Navbar() {
           <Link href="/blogs" style={{ color: "var(--text)" }}>
             Blogs
           </Link>
+          <Link href="/contact" style={{ color: "var(--text)" }}>
+            Contact
+          </Link>
           <Link href="/admin" style={{ color: "var(--text)" }}>
             Admin
           </Link>
@@ -84,6 +87,14 @@ export default function Navbar() {
               style={{ color: "var(--text)" }}
             >
               Blogs
+            </Link>
+
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
+              style={{ color: "var(--text)" }}
+            >
+              Contact
             </Link>
 
             <Link

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SubscribeForm from "@/components/SubscribeForm";
+import ContactSection from "@/components/ContactSection";
 async function getBlogs() {
   let baseUrl = "";
 
@@ -24,6 +25,7 @@ export default async function Home() {
   const blogs = await getBlogs();
 
   return (
+    <>
     <main className="max-w-4xl mx-auto p-4">
 
      {/* 🔵 BANNER */}
@@ -55,7 +57,7 @@ export default async function Home() {
   
   </div>
        <div className="pt-32 md:pt-32">
-          <h1 className="text-3xl font-bold" style={{ fontFamily: "var(--font-display)" }} >Naga Sai Teja Bollimuntha</h1>
+          <h1 className="text-3xl font-bold" style={{ fontFamily: "var(--font-display)" }} >Naga Sai Teja Bollimuntha...</h1>
           <p className="text-gray-350">
             Building things || learning daily || chasing growth 
           </p>
@@ -75,23 +77,46 @@ export default async function Home() {
   <h2 className="text-xl font-semibold mb-4">Latest Blogs</h2>
 
   <div className="space-y-4">
-    {blogs.map((blog: any) => (
-      <div key={blog._id} className="card p-4 shadow-sm">
-        <Link href={`/blog/${blog.slug}`}>
-          <h3 className="text-lg font-semibold text-accent hover:underline">
-            {blog.title}
-          </h3>
-        </Link>
+    {blogs.length > 0 ? (
+      blogs.map((blog: any) => (
+        <div key={blog._id} className="card p-4 shadow-sm">
+          <Link href={`/blog/${blog.slug}`}>
+            <h3 className="text-lg font-semibold text-accent hover:underline">
+              {blog.title}
+            </h3>
+          </Link>
 
-        <p className="text-sm text-muted">
-          {new Date(blog.createdAt).toLocaleDateString()}
-        </p>
+          <p className="text-sm text-muted">
+            {new Date(blog.createdAt).toLocaleDateString()}
+          </p>
 
-        <p className="mt-2 text-muted">
-          {blog.content.slice(0, 100)}...
-        </p>
-      </div>
-    ))}
+          <p className="mt-2 text-muted">
+            {blog.content.slice(0, 100)}...
+          </p>
+        </div>
+      ))
+    ) : (
+      /* Ghost placeholder cards — space reserved for future posts */
+      [0, 1, 2].map((i) => (
+        <div key={i} className="card p-4 shadow-sm" style={{ opacity: 0.45 }}>
+          {/* Title placeholder */}
+          <div className="h-4 rounded mb-3" style={{
+            width: i === 0 ? "60%" : i === 1 ? "75%" : "50%",
+            backgroundColor: "var(--border)"
+          }} />
+          {/* Date placeholder */}
+          <div className="h-3 rounded mb-3" style={{
+            width: "25%",
+            backgroundColor: "var(--border)"
+          }} />
+          {/* Excerpt placeholder lines */}
+          <div className="space-y-2">
+            <div className="h-3 rounded" style={{ width: "100%", backgroundColor: "var(--border)" }} />
+            <div className="h-3 rounded" style={{ width: "85%", backgroundColor: "var(--border)" }} />
+          </div>
+        </div>
+      ))
+    )}
   </div>
 
   <div className="mt-4">
@@ -119,5 +144,7 @@ export default async function Home() {
 
       </div>
     </main>
+    <ContactSection />
+    </>
   );
 }
