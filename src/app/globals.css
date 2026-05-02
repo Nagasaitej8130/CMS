@@ -872,4 +872,20 @@ select {
   border-top: 1px solid var(--border);
   margin: 1.5rem 0;
 }
+
+/* ----------------------------------
+   ADMIN MEDIA REMOVE BUTTONS
+   ---------------------------------- */
+
+/* Hide remove buttons injected by the admin editor in public views */
+button.admin-remove-media-btn,
+button[onclick*="remove()"] {
+  display: none !important;
+}
+
+/* Show them ONLY inside the rich text editor */
+.rte-editor button.admin-remove-media-btn,
+.rte-editor button[onclick*="remove()"] {
+  display: inline-block !important;
+}
 

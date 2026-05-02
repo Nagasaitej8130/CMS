@@ -53,7 +53,7 @@ function RichTextEditor({
         const html = `<div class="blog-media-wrapper" contenteditable="false" style="margin:16px 0;text-align:center;">
           <img src="${dataUrl}" alt="Blog image" style="max-width:100%;height:auto;border-radius:8px;cursor:pointer;" onclick="this.style.maxWidth=this.style.maxWidth==='50%'?'100%':'50%'" />
           <div style="margin-top:4px;">
-            <button onclick="this.parentElement.parentElement.remove()" style="background:#e5383b;color:white;border:none;padding:2px 10px;border-radius:4px;font-size:12px;cursor:pointer;">Remove</button>
+            <button class="admin-remove-media-btn" onclick="this.parentElement.parentElement.remove()" style="background:#e5383b;color:white;border:none;padding:2px 10px;border-radius:4px;font-size:12px;cursor:pointer;">Remove</button>
           </div>
         </div><p><br></p>`;
         document.execCommand("insertHTML", false, html);
@@ -61,7 +61,7 @@ function RichTextEditor({
         const html = `<div class="blog-media-wrapper" contenteditable="false" style="margin:16px 0;text-align:center;">
           <video controls style="max-width:100%;border-radius:8px;" src="${dataUrl}"></video>
           <div style="margin-top:4px;">
-            <button onclick="this.parentElement.parentElement.remove()" style="background:#e5383b;color:white;border:none;padding:2px 10px;border-radius:4px;font-size:12px;cursor:pointer;">Remove</button>
+            <button class="admin-remove-media-btn" onclick="this.parentElement.parentElement.remove()" style="background:#e5383b;color:white;border:none;padding:2px 10px;border-radius:4px;font-size:12px;cursor:pointer;">Remove</button>
           </div>
         </div><p><br></p>`;
         document.execCommand("insertHTML", false, html);
@@ -69,7 +69,7 @@ function RichTextEditor({
         const html = `<div class="blog-media-wrapper" contenteditable="false" style="margin:16px 0;text-align:center;">
           <audio controls style="width:100%;" src="${dataUrl}"></audio>
           <div style="margin-top:4px;">
-            <button onclick="this.parentElement.parentElement.remove()" style="background:#e5383b;color:white;border:none;padding:2px 10px;border-radius:4px;font-size:12px;cursor:pointer;">Remove</button>
+            <button class="admin-remove-media-btn" onclick="this.parentElement.parentElement.remove()" style="background:#e5383b;color:white;border:none;padding:2px 10px;border-radius:4px;font-size:12px;cursor:pointer;">Remove</button>
           </div>
         </div><p><br></p>`;
         document.execCommand("insertHTML", false, html);
