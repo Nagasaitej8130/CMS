@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import AdminClient from "@/components/AdminClient";
 
 export default async function AdminPage() {
-  const cookieStore = await cookies(); // ✅ FIX
+  const cookieStore = await cookies();
   const admin = cookieStore.get("admin");
 
   if (!admin) {

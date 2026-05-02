@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import BackButton from "@/components/BackButton";
 
 export default function LoginPage() {
   const [password, setPassword] = useState("");
@@ -40,7 +41,10 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="h-screen flex items-center justify-center">
+    <main className="h-screen flex flex-col items-center justify-center">
+      <div className="mb-6">
+        <BackButton />
+      </div>
       <form
         onSubmit={handleLogin}
         className="p-6 border rounded space-y-4 w-full max-w-sm"

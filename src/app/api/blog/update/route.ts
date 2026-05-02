@@ -6,18 +6,32 @@ export async function POST(req: Request) {
   try {
     await connectDB();
 
-    const { id, title, content, category, tags } = await req.json();
+    const { _id, title, content, category, tags } = await req.json();
+
+    // Generate new slug from title
+    const slug = title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)+/g, "");
 
     const updatedBlog = await Blog.findByIdAndUpdate(
-      id,
+      _id,
       {
         title,
+        slug,
         content,
         category,
         tags,
       },
       { new: true }
     );
+
+    if (!updatedBlog) {
+      return NextResponse.json(
+        { success: false, error: "Blog not found" },
+        { status: 404 }
+      );
+    }
 
     return NextResponse.json({
       success: true,

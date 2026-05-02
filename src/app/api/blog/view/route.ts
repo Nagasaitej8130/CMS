@@ -24,31 +24,19 @@ export async function POST(req: Request) {
       );
     }
 
-    const alreadyLiked = blog.likedBy.includes(visitorId);
+    // Only increment if this visitor hasn't viewed before
+    const alreadyViewed = blog.viewedBy.includes(visitorId);
 
-    if (alreadyLiked) {
-      // Unlike — remove visitor and decrement
-      blog.likedBy = blog.likedBy.filter((id: string) => id !== visitorId);
-      blog.likes = Math.max(0, blog.likes - 1);
+    if (!alreadyViewed) {
+      blog.viewedBy.push(visitorId);
+      blog.views += 1;
       await blog.save();
-
-      return NextResponse.json({
-        success: true,
-        likes: blog.likes,
-        liked: false,
-      });
-    } else {
-      // Like — add visitor and increment
-      blog.likedBy.push(visitorId);
-      blog.likes += 1;
-      await blog.save();
-
-      return NextResponse.json({
-        success: true,
-        likes: blog.likes,
-        liked: true,
-      });
     }
+
+    return NextResponse.json({
+      success: true,
+      views: blog.views,
+    });
   } catch (error: any) {
     return NextResponse.json(
       { success: false, error: error.message },

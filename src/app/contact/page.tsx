@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SubscribeForm from "@/components/SubscribeForm";
+import BackButton from "@/components/BackButton";
 
 export const metadata: Metadata = {
   title: "Contact — Naga Sai Teja Bollimuntha",
@@ -63,6 +64,8 @@ export default function ContactPage() {
   return (
     <>
       <main className="max-w-4xl mx-auto px-4 py-16">
+        <BackButton />
+        <div className="mt-8"></div>
         {/* Heading */}
         <div className="text-center mb-14">
           <h1

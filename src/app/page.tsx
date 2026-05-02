@@ -1,6 +1,8 @@
 import Link from "next/link";
 import SubscribeForm from "@/components/SubscribeForm";
 import ContactSection from "@/components/ContactSection";
+import { formatDateIST, stripHtml } from "@/utils/date";
+
 async function getBlogs() {
   let baseUrl = "";
 
@@ -86,12 +88,13 @@ export default async function Home() {
             </h3>
           </Link>
 
-          <p className="text-sm text-muted">
-            {new Date(blog.createdAt).toLocaleDateString()}
+          <p className="text-sm text-muted inline-flex items-center gap-1">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            {formatDateIST(blog.createdAt)}
           </p>
 
           <p className="mt-2 text-muted">
-            {blog.content.slice(0, 100)}...
+            {stripHtml(blog.content).slice(0, 100)}...
           </p>
         </div>
       ))
