@@ -5,6 +5,8 @@ import SubscribeForm from "@/components/SubscribeForm";
 import ContactSection from "@/components/ContactSection";
 import { formatDateIST, stripHtml } from "@/utils/date";
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   let blogs: any[] = [];
   

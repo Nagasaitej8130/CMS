@@ -11,13 +11,21 @@ export default function BlogsPage() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const [sort, setSort] = useState("latest");
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchBlogs = async () => {
-    const res = await fetch("/api/blog");
-    const data = await res.json();
+    setIsLoading(true);
+    try {
+      const res = await fetch("/api/blog");
+      const data = await res.json();
 
-    if (data.success) {
-      setBlogs(data.data);
+      if (data.success) {
+        setBlogs(data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -79,7 +87,12 @@ export default function BlogsPage() {
   </div>
 
   <div className="space-y-4">
-    {filteredBlogs.length === 0 ? (
+    {isLoading ? (
+      <div className="flex flex-col items-center justify-center py-20">
+        <div className="w-10 h-10 border-4 rounded-full animate-spin border-t-transparent" style={{ borderColor: 'var(--muted)', borderTopColor: 'var(--text)' }}></div>
+        <p className="mt-4 font-medium animate-pulse" style={{ color: 'var(--text)', fontFamily: "var(--font-heading)" }}>Loading blogs...</p>
+      </div>
+    ) : filteredBlogs.length === 0 ? (
       <div className="text-center py-16" style={{ color: "var(--muted)" }}>
         {/* Outlined empty-inbox illustration */}
         <svg
