@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     // Email notification system
     try {
       const subscribers = await Subscriber.find();
-      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://tejwrites.vercel.app";
       const blogUrl = `${baseUrl}/blog/${slug}`;
 
       for (const sub of subscribers) {
